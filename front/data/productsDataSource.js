@@ -1,3 +1,4 @@
+//This const stock function whos calling the API by simply URL or by fetch
 const ProductApi = {
 
     baseUrl: function (param) {
