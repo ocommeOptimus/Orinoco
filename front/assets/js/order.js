@@ -25,7 +25,7 @@ const DomOrder = {
 
         DomOrder.order.appendChild(orderTemplate)
 
-        DomCart.buildOrderList()
+        DomOrder.buildOrderList()
 
     },
     buildOrderList: function () {

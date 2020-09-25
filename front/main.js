@@ -64,7 +64,7 @@ const Dom = {
 
         Dom.updateCartNumber()
         
-        if (window.location.pathname == '/index.html' || window.location.hostname == 'http://localhost') {
+        if (window.location.pathname == '/index.html' || window.location.pathname == '/') {
             Dom.toggleItems()
         }
     },

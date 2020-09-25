@@ -2,48 +2,54 @@
     @include flex;
 }
 .cards__presentation {
-    width: 100%;
-    padding-bottom: 75px;
-    text-align: center;
     color: $colour-txt;
     font-size: 6.5rem;
+    padding-bottom: 75px;
+    text-align: center;
     transition: all 250ms;
+    width: 100%;
     &:hover {
         cursor: default;
         color: darken($colour-primary, 25);
     }
+    @media (max-width:992px) {
+        font-size: 5rem;
+    }
 }
    
 .card {
-    cursor: pointer;
     background-color: transparent;
+    cursor: pointer;
     height: 300px;
-    perspective: 1000px;
     margin: 1rem;
+    perspective: 1000px;
+    width: 360px;
+    @media (max-width:992px) {
+        height: 150px;
+        width: 180px;
+    }
     &__inner {
-        position: relative;
-        width: 360px;
         height: 100%;
+        position: relative;
         transition: transform 0.9s;
         transform-style: preserve-3d;
+        width: 100%;
         &:hover {
             transform: rotateY(180deg);
             }
         }
     &__front, &__back {
-    position: absolute;
-    width: 360px;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 3px;
+    height: 100%;
+    position: absolute;
     }
     &__img {
-    width: 360px;
-    height: 300px;
-    object-fit: cover;
-    border: 1px lighten($colour-secondary, 15) solid;
+    border: 2px lighten($colour-secondary, 15) solid;
     border-radius: 3px;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
     }
     &__back {
     background-image: url(../img/folk-pattern-black.png);
@@ -52,17 +58,26 @@
     transform: rotateY(180deg);
     }
     &__title {
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-    text-align: center;
     font-family: 'milkman', sans-serif;
     font-size: 3rem;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    text-align: center;
     word-spacing: 3px;
+    @media (max-width:992px) {
+        font-size: 2rem;
+        margin-bottom: 5px;
+        padding-bottom: 0px;
+    }
     }
     &__text {
-    opacity: 0.85;
     font-size: 2rem;
     line-height: 2.4;
+    opacity: 0.85;
     text-align: center;
+    @media (max-width:992px) {
+        font-size: 1.5rem;
+        line-height: 1;
+    }
     }
 }
