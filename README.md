@@ -1,7 +1,7 @@
 # Orinoco
 
-Welcome to my project Orinoco.
-This is the 5th project into my web developer training.
+Welcome to my project Orinoco.<br/><br/>
+This is the 5th project into my web developer training.<br/>
 This project includes Front-end and API for a webshop.
 
 ## Getting Started
@@ -20,7 +20,7 @@ Open your command line / shell from the root folder and bundle the JS dynamic fi
 npm run build
 ```
 
-Then listen the API server and the front-end on your localhost.
+Then listen the API server and the front-end on your localhost.<br/>
 The server will listen on the port 3000, the front-end listen to the localhost available.
 
 ```
@@ -29,7 +29,7 @@ npm start
 
 ## Deployment
 
-Please be aware of the localhost port number used by your local machine when deploy the front.
+Please be aware of the localhost port number used by your local machine when deploy the front.<br/>
 You can easily find it on your command line / shell.
 
 ## Built With
