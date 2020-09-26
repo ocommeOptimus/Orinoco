@@ -67,12 +67,12 @@
                 <form class="cart__form" id="cart-form">
                     <div class="cart__form-fields">
                         <label for="lastName">Nom * : </label>
-                            <input type="text" name="lastName" id="lastName" class="cart__form-input" required="" placeholder="Nom" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1).toLowerCase();">
+                            <input type="text" name="lastName" pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" id="lastName" class="cart__form-input" required="" placeholder="Nom" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1).toLowerCase();" title="Saisissez votre nom ou nom composé sans numéros, avec ou sans caractères spéciaux.">
                     </div>
 
                     <div class="cart__form-fields">
                         <label for="firstName">Prénom * : </label>
-                            <input type="text" name="firstName" id="firstName" class="cart__form-input" required="" placeholder="Prénom" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1).toLowerCase();">
+                            <input type="text" name="firstName" pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" id="firstName" class="cart__form-input" required="" placeholder="Prénom" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1).toLowerCase();" title="Saisissez votre prénom ou prénom composé sans numéros, avec ou sans caractères spéciaux.">
                     </div>
 
                     <div class="cart__form-fields">
@@ -82,7 +82,7 @@
 
                     <div class="cart__form-fields">
                         <label for="city">Ville * : </label>
-                            <input type="text" name="city" id="city" class="cart__form-input" required="" placeholder="Ville">
+                            <input type="text" name="city" pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" id="city" class="cart__form-input" required="" placeholder="Ville" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1).toLowerCase();" title="Saisissez le nom ou nom composé de votre ville sans numéros, avec ou sans caractères spéciaux.">
                     </div>
 
                     <div class="cart__form-fields">
