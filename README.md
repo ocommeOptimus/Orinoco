@@ -1,12 +1,12 @@
 # Orinoco
 
-Welcome to my project Orinoco.<br/><br/>
+Welcome to my project Orinoco !<br/><br/>
 This is the 5th project into my web developer training.<br/>
 This project includes Front-end and API for a webshop.
 
 ## Getting Started
 
-Clone this repository on your local machine
+Clone this repository on your local machine.
 
 ### Prerequisites
 
@@ -14,7 +14,7 @@ No prerequisites, just enjoy !
 
 ### Installing
 
-Open your command line / shell from the root folder and bundle the JS dynamic files
+Open your command line / shell from the root folder and bundle the JS dynamic files.
 
 ```
 npm run build
@@ -40,7 +40,7 @@ You can easily find it on your command line / shell.
 
 ## Contributing
 
-Get in touch with me [jeremy.boisdur@gmail.com](mailto:jeremy.boisdur@gmail.com)
+Get in touch with me [jeremy.boisdur@gmail.com](mailto:jeremy.boisdur@gmail.com).
 
 ## Versioning
 
@@ -48,8 +48,8 @@ We use [Git](https://git-scm.com/) for versioning. For the versions available, s
 
 ## Authors
 
-* **ocommeOptimus** - *Initial work* - [Orinoco[beta]](https://github.com/ocommeOptimus/old_orinoco)
+* **ocommeOptimus** - *Initial work* - [Orinoco[beta]](https://github.com/ocommeOptimus/old_orinoco).
 
 ## Acknowledgments
 
-* Hat tip to LuluBaroy and anyone whose code was used
+* Hat tip to LuluBaroy and anyone else whose code was used.
