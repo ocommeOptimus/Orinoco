@@ -77,6 +77,7 @@ const DomProduct = {
             let cartProductNumber       = JSON.parse(localStorage.getItem('cart'))
             const toastBox              = document.getElementById("toast")
             
+            //Conditional to show a specific message when adding a product for the first time
             if (cartProductNumber === null) {
                 cart = []
                 firstAddProduct         = new Line(urlStr.get('type'), productDetails.imageUrl, productDetails.name, productDetails._id, parseInt(quantitySelect.value), productDetails.price)
@@ -88,6 +89,7 @@ const DomProduct = {
                 setTimeout(function(){ toastBox.className = toastBox.className.replace("show", ""); }, 3000)
                 
             }
+            //Conditional to show a specific message if we already add a product to our cart
             else {
 
                 productAlreadyAdded = false
