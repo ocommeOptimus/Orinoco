@@ -1,6 +1,7 @@
 # Orinoco
 
-Welcome to my project Orinoco
+Welcome to my project Orinoco.
+This is the 5th project into my web developer training.
 This project includes Front-end and API for a webshop.
 
 ## Getting Started
@@ -13,7 +14,7 @@ No prerequisites, just enjoy !
 
 ### Installing
 
-Open your command line/shell from the root folder and bundle the JS dynamic files
+Open your command line / shell from the root folder and bundle the JS dynamic files
 
 ```
 npm run build
@@ -48,10 +49,6 @@ We use [Git](https://git-scm.com/) for versioning. For the versions available, s
 ## Authors
 
 * **ocommeOptimus** - *Initial work* - [Orinoco[beta]](https://github.com/ocommeOptimus/old_orinoco)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
