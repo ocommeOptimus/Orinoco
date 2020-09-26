@@ -16,6 +16,7 @@
   },
   "author": "ocommeOptimus",
   "license": "ISC",
+  "browserslist": "last 4 versions",
   "bugs": {
     "url": "https://github.com/ocommeOptimus/js-improvement/issues"
   },

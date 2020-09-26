@@ -3,12 +3,19 @@
     height: 245px;
     border-bottom: 2px solid lighten($colour-bg-nav, 15);
     padding: 0 25px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
     @include flex-space;
     @media (max-width:992px) {
         height: 220px;
     }
     @media (max-width:576px) {
         height: 195px;
+    }
+    &__infos {
+        display: contents;
     }
     &__link {
         margin: auto;

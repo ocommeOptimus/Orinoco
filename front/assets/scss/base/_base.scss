@@ -14,8 +14,9 @@ html {
 body {
     background-image: url(../img/triangle-mosaic.png);
     box-sizing: border-box;
-    margin-bottom: 145px;
+    margin: 245px auto 145px auto;
     zoom: 0.7;
+    //width: calc(100% - 80px);
     @media (max-width: 992px) {
         margin-bottom: 100px;
     }
