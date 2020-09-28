@@ -15,12 +15,12 @@ const DomProduct = {
     productInfo: document.getElementById('template-product'),
 
     //This function will set a template and show the information about the product
-    showProductDetails: async function (productId) {
+    showProductDetails: async function () {
         let firstProperty               = ""
         let queryStr                    = window.location.search
         let urlStr                      = new URLSearchParams(queryStr)
 
-        const urlItem                   = ProductApi.idUrl(productId)
+        const urlItem                   = ProductApi.idUrl()
         const productDetails            = await ProductApi.getProducts(urlItem)
         
         const template                  = document.importNode(DomProduct.productInfo.content, true)
@@ -118,7 +118,7 @@ const DomProduct = {
         })
     },
 
-    //This function will use the type of product into the window URL and get the option into the API
+    //This function will use the type of product into the window URL and get the option of product type from the API
     getAllOptions: function (value, param) {
         param[value].forEach((value, i) => {
             let optionSelect        = document.getElementById('product-options')
