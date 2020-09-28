@@ -8,6 +8,7 @@ class Contact {
         this.email      = email
     }
 }
+
 // Creating a class to post contact's object and product's array to server
 class FormSent {
     constructor(user, products) {
@@ -15,6 +16,7 @@ class FormSent {
         this.products   = products
     }
 }
+
 // Creating a class to easily add product purchased info
 class Confirm {
     constructor(param, name, imgUrl, id, quantity, price) {
@@ -27,6 +29,14 @@ class Confirm {
     }
 }
 
+//Creating a class to stock orderId and type of product when we submit the form
+class OrderConfirm {
+    constructor(id, param){
+        this.id = id
+        this.param = param
+    }
+}
+
 const DomCart = {
     cart: document.getElementById('cart'),
     cartProducts: document.getElementById('template-cart'),
@@ -35,46 +45,58 @@ const DomCart = {
     form: document.getElementById('form'),
     cartForm: document.getElementById('template-form'),
 
+    //This function will show the products into the cart thanks to a template
     buildCart: function () {
-        let productsAddedToCart = JSON.parse(localStorage.getItem('cart'))
-        let toggleCartRemove = false
-        const toastBox = document.getElementById("toast")
+        let productsAddedToCart             = JSON.parse(localStorage.getItem('cart'))
+        let toggleCartRemove                = false
+        const toastBox                      = document.getElementById("toast")
 
-        productsAddedToCart.forEach((c, i) => {
-            const cartTemplate = document.importNode(DomCart.cartProducts.content, true)
-            const cartProductsList = cartTemplate.getElementById('cart-products')
-            let cartLink = cartTemplate.getElementById('cart-link')
-            cartLink.href = './product.html?type=' + c.param + '&id=' + c.id
-            let cartImage = cartTemplate.getElementById('cart-image')
-            cartImage.src = c.imgUrl
-            cartImage.alt = 'Image de ' + c.name
-            cartImage.title = 'Image de ' + c.name
-            let cartProductTitle = cartTemplate.getElementById('cart-title')
-            cartProductTitle.innerHTML = c.name
-            let cartProductPrice = cartTemplate.getElementById('cart-price')
-            cartProductPrice.innerHTML = 'Prix unitaire : ' + (new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(c.price/100))
-            let cartProductQuantity = cartTemplate.getElementById('cart-quantity')
-            cartProductQuantity.innerHTML = 'Quantité : ' + c.quantity
-            let buttonMore = cartTemplate.getElementById('btn-more')
+        //Set a loop forEach to show product added one by one
+        productsAddedToCart.forEach((product, i) => {
+            const cartTemplate              = document.importNode(DomCart.cartProducts.content, true)
+        
+            let cartLink                    = cartTemplate.getElementById('cart-link')
+            let cartImage                   = cartTemplate.getElementById('cart-image')
+            let cartProductTitle            = cartTemplate.getElementById('cart-title')
+            let cartProductPrice            = cartTemplate.getElementById('cart-price')
+            let cartProductQuantity         = cartTemplate.getElementById('cart-quantity')
+            let buttonMore                  = cartTemplate.getElementById('btn-more')
+            let buttonLess                  = cartTemplate.getElementById('btn-less')
+            let cartProductsTotal           = cartTemplate.getElementById('cart-products-total')
+            
+            cartLink.href                   = './product.html?type=' + product.param + '&id=' + product.id
+            
+            cartImage.src                   = product.imgUrl
+            cartImage.alt                   = 'Image de ' + product.name
+            cartImage.title                 = 'Image de ' + product.name
+            
+            cartProductTitle.innerHTML      = product.name
+            
+            cartProductPrice.innerHTML      = 'Prix unitaire : ' + (new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(product.price/100))
+            
+            cartProductQuantity.innerHTML   = 'Quantité : ' + product.quantity
+            
+            //Set rules and message when we click on the button +
             buttonMore.setAttribute('id', 'btn-more-' + i)
             buttonMore.addEventListener('click', function (event) {
-                c.quantity++
+                product.quantity++
                 localStorage.setItem('cart', JSON.stringify(productsAddedToCart))
-                toastBox.innerHTML = 'Quantité modifiée !'
-                toastBox.className = "show"
+                toastBox.innerHTML          = 'Quantité modifiée !'
+                toastBox.className          = "show"
                 setTimeout(function(){ toastBox.className = toastBox.className.replace("show", ""); }, 3000)
                 document.getElementById('cart-num').innerHTML = "( " + productsAddedToCart.length + " )"
                 setTimeout(function() { location.reload(); }, 1500)
             });
-
-            let buttonLess = cartTemplate.getElementById('btn-less')
+        
+            //Set rules and message when we click on the button -
             buttonLess.setAttribute('id', 'btn-less-' + i)
             buttonLess.addEventListener('click', function (event) {
+                //Conditional when remove an unique product into cart
                 if (productsAddedToCart[i].quantity === 1) {
                     toggleCartRemove = true
                     if (productsAddedToCart.length === 1) {
-                        toastBox.innerHTML = c.name + ' a été supprimé et votre panier est vide !'
-                        toastBox.className = "show"
+                        toastBox.innerHTML  = product.name + ' a été supprimé et votre panier est vide !'
+                        toastBox.className  = "show"
                         setTimeout(function(){ toastBox.className = toastBox.className.replace("show", ""); }, 3000)
                         document.getElementById('cart-num').innerHTML = "( " + productsAddedToCart.length + " )"
                         localStorage.clear()
@@ -85,62 +107,59 @@ const DomCart = {
                         productsAddedToCart[i].quantity--
                         productsAddedToCart.splice(i, 1)
                         localStorage.setItem('cart', JSON.stringify(productsAddedToCart))
-                        toastBox.innerHTML = c.name + ' a été supprimé du panier !'
-                        toastBox.className = "show"
+                        toastBox.innerHTML  = product.name + ' a été supprimé du panier !'
+                        toastBox.className  = "show"
                         setTimeout(function(){ toastBox.className = toastBox.className.replace("show", ""); }, 3000)
                         document.getElementById('cart-num').innerHTML = "( " + productsAddedToCart.length + " )"
                         setTimeout(function() { location.reload(); }, 1500)
                     }
                 }
+                //Conditional when remove a product among others
                 if (productsAddedToCart[i].quantity > 1 && toggleCartRemove == false) {
                     productsAddedToCart[i].quantity--
                     localStorage.setItem('cart', JSON.stringify(productsAddedToCart))
-                    toastBox.innerHTML = 'Quantité modifiée !'
-                    toastBox.className = "show"
+                    toastBox.innerHTML      = 'Quantité modifiée !'
+                    toastBox.className      = "show"
                     setTimeout(function(){ toastBox.className = toastBox.className.replace("show", ""); }, 3000)
                     document.getElementById('cart-num').innerHTML = "( " + productsAddedToCart.length + " )"
                     setTimeout(function() { location.reload(); }, 1500)
                 }
-                
             })
-
-            let cartProductsTotal = cartTemplate.getElementById('cart-products-total')
-            cartProductsTotal.innerHTML = 'Prix total pour cet article : ' + (new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format((c.quantity * c.price)/100))
+        
+            cartProductsTotal.innerHTML     = 'Prix total pour cet article : ' + (new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format((product.quantity * product.price)/100))
+            
             DomCart.cart.appendChild(cartTemplate)
         })      
     },
 
+    //This function will calculate the total price of the product and show it thanks to a template 
     buildTotalPrice: function () {
-        let productsAddedToCart = JSON.parse(localStorage.getItem('cart'))
-        let calculationTotalOrder = 0;
-        const cartTotalTemplate = document.importNode(DomCart.cartFinalPrice.content, true)
-
-        for (let j in productsAddedToCart) {
-            calculationTotalOrder += productsAddedToCart[j].price * productsAddedToCart[j].quantity
+        let productsAddedToCart             = JSON.parse(localStorage.getItem('cart'))
+        let calculationTotalOrder           = 0;
+        
+        const cartTotalTemplate             = document.importNode(DomCart.cartFinalPrice.content, true)
+        
+        let cartTotal                       = cartTotalTemplate.getElementById('cart-total')
+        
+        for (let product in productsAddedToCart) {
+            calculationTotalOrder += productsAddedToCart[product].price * productsAddedToCart[product].quantity
         }
 
-        let cartTotal = cartTotalTemplate.getElementById('cart-total')
-        cartTotal.innerHTML = 'Prix total de votre commande: ' + (new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(calculationTotalOrder/100))
+        cartTotal.innerHTML                 = 'Prix total de votre commande: ' + (new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(calculationTotalOrder/100))
 
         DomCart.total.appendChild(cartTotalTemplate)
-
     },
 
+    //This function will set a form thanks to a template and send the information entered to a class
     buildForm: function () {
-        let productsAddedToCart = JSON.parse(localStorage.getItem('cart'))
-        let orderIds = []
-        const toastBox = document.getElementById("toast")
+        let productsAddedToCart             = JSON.parse(localStorage.getItem('cart'))
+        let orderIds                        = []
+        const toastBox                      = document.getElementById("toast")
         
         const formTemplate = document.importNode(DomCart.cartForm.content, true)
         DomCart.form.appendChild(formTemplate)
 
-        class OrderConfirm {
-            constructor(id, param){
-                this.id = id
-                this.param = param
-            }
-        }
-
+        //This function will send the @param order if the @param URL answer correctly
         function sending (url, order) {
             return new Promise(function (resolve, reject) {
                 let request = new XMLHttpRequest();
@@ -163,12 +182,13 @@ const DomCart = {
             })
         }
 
+        //Listening to the submit button to get infos and put them in arrays
         document.getElementById('btn-submit').addEventListener('click', function (event) {
             
             //Initializing array for products Ordered
             let productsOrdered = []
                     
-            //Checking the form validity
+            //Conditional to check the form validity
             if (!document.getElementById('cart-form').checkValidity()) {
                 //Form isn't valid: preventing the submit and show an error message
                 event.preventDefault()
@@ -183,24 +203,25 @@ const DomCart = {
                 //Initializing an array to push the Confirm class into it
                 let confirm = []
 
-                for (let l in productsAddedToCart) {
+                for (let product in productsAddedToCart) {
                     //if it's the first time we have this type of product, we create sub array
-                    if (typeof productsOrdered[productsAddedToCart[l].param] == "undefined") {
-                        productsOrdered[productsAddedToCart[l].param] = [];
+                    if (typeof productsOrdered[productsAddedToCart[product].param] == "undefined") {
+                        productsOrdered[productsAddedToCart[product].param] = [];
                     }
                     //we push product on dedicate subarray
-                    productsOrdered[productsAddedToCart[l].param].push(productsAddedToCart[l].id.toString())
-                    confirm.push(new Confirm(productsAddedToCart[l].param, productsAddedToCart[l].name, productsAddedToCart[l].imgUrl, productsAddedToCart[l].id, productsAddedToCart[l].quantity, productsAddedToCart[l].price))
+                    productsOrdered[productsAddedToCart[product].param].push(productsAddedToCart[product].id.toString())
+                    confirm.push(new Confirm(productsAddedToCart[product].param, productsAddedToCart[product].name, productsAddedToCart[product].imgUrl, productsAddedToCart[product].id, productsAddedToCart[product].quantity, productsAddedToCart[product].price))
                 }
 
                 //Initializing an array to get the param used to the POST request and adding it to orderIds
                 let paramOrder = []
 
-                for (let i in productsOrdered) {
-                    paramOrder.push(i)
+                //Set a loop for to get the type of product added and use it in the sending function, then change the localStorage and redirect
+                for (let typeOfProduct in productsOrdered) {
+                    paramOrder.push(typeOfProduct)
                     localStorage.setItem('paramOrder', JSON.stringify(paramOrder))
 
-                    sending("http://localhost:3000/api/" + i + "/order", new FormSent(newContact, productsOrdered[i]))
+                    sending("http://localhost:3000/api/" + typeOfProduct + "/order", new FormSent(newContact, productsOrdered[typeOfProduct]))
                     .then(function () {
                         if(Object.keys(productsOrdered).length === orderIds.length) {
                             localStorage.setItem('confirm', JSON.stringify(confirm))
@@ -213,9 +234,9 @@ const DomCart = {
         })
             
     },
-
+    
+    //This function will build the cart if some products has been added, else the function redirect to the homepage
     displayCart: function () {
-        const toastBox = document.getElementById("toast")
         if (JSON.parse(localStorage.getItem('cart') !== null)) {
             DomCart.buildCart()
             DomCart.buildTotalPrice()

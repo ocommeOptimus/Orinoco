@@ -14,13 +14,15 @@
     </head>
     <body id="cart-page">
         <header class="header">
-            <a class="header__link" href="../index.html">
-                <img class="header__logo" src="../assets/img/logo.png">
-            </a>
-            <a id="btn-cart" href="./cart.html" class="header__link--icons">
-                <img class="header__cart-img" src="../assets/img/cart.png" alt="Image caddie">
-                <p class="header__cart-num" id="cart-num"></p>
-            </a>
+            <div class="header__infos">
+                <a class="header__link" href="../index.html">
+                    <img class="header__logo" src="../assets/img/logo.png">
+                </a>
+                <a id="btn-cart" href="./cart.html" class="header__link--icons">
+                    <img class="header__cart-img" src="../assets/img/cart.png" alt="Image caddie">
+                    <p class="header__cart-num" id="cart-num"></p>
+                </a>
+            </div>
         </header>
         <h1 class="presentation__title">Panier</h1>
         <div class="container" id="cart"></div>
@@ -65,12 +67,12 @@
                 <form class="cart__form" id="cart-form">
                     <div class="cart__form-fields">
                         <label for="lastName">Nom * : </label>
-                            <input type="text" name="lastName" id="lastName" class="cart__form-input" required="" placeholder="Nom" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1).toLowerCase();">
+                            <input type="text" name="lastName" pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" id="lastName" class="cart__form-input" required="" placeholder="Nom" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1).toLowerCase();" title="Saisissez votre nom ou nom composé sans numéros, avec ou sans caractères spéciaux.">
                     </div>
 
                     <div class="cart__form-fields">
                         <label for="firstName">Prénom * : </label>
-                            <input type="text" name="firstName" id="firstName" class="cart__form-input" required="" placeholder="Prénom" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1).toLowerCase();">
+                            <input type="text" name="firstName" pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" id="firstName" class="cart__form-input" required="" placeholder="Prénom" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1).toLowerCase();" title="Saisissez votre prénom ou prénom composé sans numéros, avec ou sans caractères spéciaux.">
                     </div>
 
                     <div class="cart__form-fields">
@@ -80,17 +82,17 @@
 
                     <div class="cart__form-fields">
                         <label for="city">Ville * : </label>
-                            <input type="text" name="city" id="city" class="cart__form-input" required="" placeholder="Ville">
+                            <input type="text" name="city" pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" id="city" class="cart__form-input" required="" placeholder="Ville" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1).toLowerCase();" title="Saisissez le nom ou nom composé de votre ville sans numéros, avec ou sans caractères spéciaux.">
                     </div>
 
                     <div class="cart__form-fields">
-                    <label for="phone">Téléphone <span>(facultatif)</span> : </label>
-                        <input type="" name="phone" id="phone" class="cart__form-input" placeholder="Téléphone">
+                    <label for="phone">Téléphone * : </label>
+                        <input type="" name="phone" pattern="^(\+[0-9]{2}[.\-\s]?|00[.\-\s]?[0-9]{2}|0)([0-9]{1,3}[.\-\s]?(?:[0-9]{2}[.\-\s]?){4})$" id="phone" class="cart__form-input" placeholder="Téléphone" title="Saisissez un numéro français, avec ou sans separateurs (. - espace), avec ou sans indicatif (+33 or 0033).">
                     </div>
 
                     <div class="cart__form-fields">
                         <label for="email">Email * : </label>
-                            <input type="email" name="email" id="email" class="cart__form-input" required="" placeholder="Email" onkeyup="this.value = this.value.toLowerCase();">
+                            <input type="email" name="email" id="email" class="cart__form-input" required="" placeholder="Email" onkeyup="this.value = this.value.toLowerCase();" title="Saisissez votre adresse email sous le format suivant mon@adresse.mail">
                      </div>
 
                      <div class="cart__form-fields">

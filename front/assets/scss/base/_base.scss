@@ -12,9 +12,11 @@ html {
 }
 
 body {
-    box-sizing: border-box;
     background-image: url(../img/triangle-mosaic.png);
-    margin-bottom: 145px;
+    box-sizing: border-box;
+    margin: 255px auto 145px auto;
+    zoom: 0.7;
+    //width: calc(100% - 80px);
     @media (max-width: 992px) {
         margin-bottom: 100px;
     }

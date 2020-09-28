@@ -1,19 +1,31 @@
 .presentation, .our-promises {
     margin: auto;
     padding: 100px 0px;
-    width: 50%;
+    width: 70%;
+    @media (max-width:992px) {
+        width: 80%;
+    }
     &__title {
-        text-align: center;
-        font-size: 6.5rem;
         color: $colour-txt;
-        margin: 20px;
+        font-size: 6.5rem;
+        margin: 20px 10px;
+        text-align: center;
+        span {
+            white-space: nowrap;
+        }
+        @media (max-width:992px) {
+            font-size: 5rem;
+        }
     }
     &__text {
-        font-family: 'milkman', sans-serif;
-        text-align: justify;
-        font-size: 3.5rem;
         color: lighten($colour-txt, 15);
+        font-family: 'milkman', sans-serif;
+        font-size: 3.5rem;
         line-height: 1;
         padding-top: 50px;
+        text-align: justify;
+        @media (max-width: 992px) {
+            display: none;
+        }
     }
 }
